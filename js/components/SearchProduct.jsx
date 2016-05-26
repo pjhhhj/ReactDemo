@@ -87,12 +87,30 @@ define(['react','jsx!components/Validation'], function(React, TextInput) {
   });
 
   var FilterableProductTable = React.createClass({
+    loadProductDataFromServer: function(){
+      $.ajax({
+        url: this.props.url,
+        dataType: 'json',
+        cache: false,
+        success: function(data) {
+          this.setState({productData: data});
+        }.bind(this),
+        error: function(xhr, status, err) {
+          console.error(this.props.url, status, err.toString());
+        }.bind(this)
+      });
+    },
     getInitialState: function(){
       return({
         filterText: '',
         inStockOnly: false,
-        filterCategory: ''
+        filterCategory: '',
+        productData: []
       });
+    },
+    componentDidMount: function() {
+      this.loadProductDataFromServer();
+      //setInterval(this.loadCommentsFromServer, this.props.pollInterval);
     },
     handleUserInput: function(filterText, inStockOnly, filterCategory){
       this.setState({
@@ -114,7 +132,7 @@ define(['react','jsx!components/Validation'], function(React, TextInput) {
             onUserInput={this.handleUserInput}
           />
           <ProductTable
-            products={this.props.products}
+            products={this.state.productData}
             filterText={this.state.filterText}
             filterCategory={this.state.filterCategory}
             inStockOnly={this.state.inStockOnly}

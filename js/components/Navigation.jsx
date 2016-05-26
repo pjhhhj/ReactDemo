@@ -73,8 +73,10 @@ define(['react', 'reactDom','jsx!components/UserGist','jsx!components/SearchProd
           {category: 'Electronics'}
         ];
 
+        var productDataUrl = "products.json"
+
         ReactDOM.render(
-          SearchProduct({products: PRODUCTS, categories:CATEGORIES}),
+          SearchProduct({url: productDataUrl, categories:CATEGORIES}),
           //  new FilterableProductTable({products: PRODUCTS, categories: CATEGORIES}),
           document.getElementById('container2')
         );
@@ -115,9 +117,11 @@ define(['react', 'reactDom','jsx!components/UserGist','jsx!components/SearchProd
           {category: 'Electronics'}
         ];
 
+        var productDataUrl = "products.json"
+
         ReactDOM.render(
-          SearchProduct({products: PRODUCTS, categories:CATEGORIES}),
-//  new FilterableProductTable({products: PRODUCTS, categories: CATEGORIES}),
+          SearchProduct({url: productDataUrl, categories:CATEGORIES}),
+          //  new FilterableProductTable({products: PRODUCTS, categories: CATEGORIES}),
           document.getElementById('container2')
         );
       }

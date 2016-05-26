@@ -1,12 +1,15 @@
 require.config({
   baseUrl: "js/",
-
+  shim : {
+    "bootstrap" : { "deps" :['jquery'] }
+  },
   paths: {
     "jquery": "jquery",
     "react": "react",
     "reactDom": "react-dom",
     "JSXTransformer": "JSXTransformer",
     "classnames":"https://cdnjs.cloudflare.com/ajax/libs/classnames/2.1.5/index.min",
+    "bootstrap": "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min"
   },
 
   jsx: {
@@ -16,7 +19,7 @@ require.config({
   }
 });
 
-require(['jquery','react', 'reactDom', 'jsx!components/Navigation'],
+require(['jquery','react', 'reactDom', 'jsx!components/Navigation', 'bootstrap'],
   function($, React, ReactDOM, Navigation) {
 
     Navigation = React.createFactory(Navigation);
